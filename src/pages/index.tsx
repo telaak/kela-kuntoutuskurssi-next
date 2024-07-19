@@ -10,7 +10,7 @@ import {
 } from "material-react-table";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
-//import { MRT_Localization_FI } from "@/fi-i18";
+import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Stack,
   AppBar,
@@ -20,7 +20,7 @@ import {
   IconButton,
   Grid,
 } from "@mui/material";
-import { MRT_Localization_FI } from 'material-react-table/locales/fi';
+import { MRT_Localization_FI } from "material-react-table/locales/fi";
 import { Course } from "@prisma/client";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -49,6 +49,16 @@ export default function Table({ courses }: { courses: Course[] }) {
         accessorKey: "name",
         header: "Nimi",
         filterVariant: "autocomplete",
+        Cell({ row }) {
+          return (
+            <a
+              target="_blank"
+              href={`https://asiointi.kela.fi/kz_app/KZInternetApplication/YleiskyselyHakuUseCase?valittu=${row.original.id}&lang=fi`}
+            >
+              {row.original.name}
+            </a>
+          );
+        },
       },
       {
         accessorKey: "illness",
@@ -76,7 +86,7 @@ export default function Table({ courses }: { courses: Course[] }) {
         Cell: ({ cell }) => dayjs(cell.getValue<Date>()).format("DD.MM.YYYY"),
         header: "Alkamispäivä",
         filterVariant: "date-range",
-        size: 100
+        size: 150,
       },
       {
         accessorKey: "area",
@@ -87,7 +97,7 @@ export default function Table({ courses }: { courses: Course[] }) {
         accessorKey: "spotsAvailable",
         header: "Tilaa",
         filterVariant: "range",
-        size: 50
+        size: 100,
       },
     ],
     []
@@ -110,7 +120,7 @@ export default function Table({ courses }: { courses: Course[] }) {
     enableRowSelection: false,
     enableFacetedValues: true,
     enableFilterMatchHighlighting: false,
-    columnFilterDisplayMode: 'popover',
+    columnFilterDisplayMode: "popover",
     localization: MRT_Localization_FI,
     enableRowVirtualization: false,
     layoutMode: "grid",
@@ -118,13 +128,13 @@ export default function Table({ courses }: { courses: Course[] }) {
     muiTableBodyCellProps: {
       sx: {
         border: "1px solid rgba(210, 210, 210, 1)",
-        whiteSpace: "normal"
+        whiteSpace: "normal",
       },
     },
     initialState: {
       density: "compact",
       showGlobalFilter: true,
-     // showColumnFilters: true,
+      // showColumnFilters: true,
       columnVisibility: {
         id: false,
       },
