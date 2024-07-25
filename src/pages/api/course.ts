@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Course } from "@prisma/client";
 import { getCourses, prisma } from "@/prisma";
+import { debouncedRevalidate } from "@/cloudflare";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,10 +25,7 @@ export default async function handler(
             id: course.id,
           },
         });
-        // res
-        //   .revalidate(`/${therapist.lastName}-${therapist.firstName}`)
-        //   .catch(console.error);
-        // debouncedRevalidate(res).catch(console.error);
+        debouncedRevalidate(res).catch(console.error);
         return res.status(201).json(upsert);
       } catch (error) {
         console.log(error);
