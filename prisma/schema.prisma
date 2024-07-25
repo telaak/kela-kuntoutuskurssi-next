@@ -14,13 +14,15 @@ datasource db {
 }
 
 model Course {
-  id             String   @id
-  name           String
-  illness        String
-  targetGroup    String
-  kind           String
-  type           String
-  startDate      DateTime
-  area           String
-  spotsAvailable Int
+  id                     String   @id
+  name                   String
+  illness                String
+  targetGroup            String
+  kind                   String
+  type                   String
+  startDate              DateTime
+  area                   String
+  spotsAvailable         Int
+  patientArea            String?
+  patientAreaDescription String?
 }
