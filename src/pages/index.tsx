@@ -61,6 +61,29 @@ export default function Table({ courses }: { courses: Course[] }) {
         },
       },
       {
+        header: "Kurssin alue",
+        accessorFn: (row) => {
+          return row.patientArea ? row.patientArea : row.patientAreaDescription;
+        },
+        filterVariant: "multi-select",
+        // filterFn: (row, id, filterValue: string[]) => {
+        //   if (filterValue.length === 0) return true;
+
+        //   if (filterValue.includes("Asiakkaita valitaan koko maasta")) {
+        //     if (row.original.patientArea) {
+        //       return filterValue.includes(row.original.patientArea);
+        //     } else {
+        //       return (
+        //         row.original.patientAreaDescription ===
+        //         "Asiakkaita valitaan koko maasta"
+        //       );
+        //     }
+        //   } else {
+        //     return filterValue.includes(row.original.patientArea as string);
+        //   }
+        // },
+      },
+      {
         accessorKey: "illness",
         header: "Sairaus",
         filterVariant: "autocomplete",
@@ -73,12 +96,12 @@ export default function Table({ courses }: { courses: Course[] }) {
       {
         accessorKey: "kind",
         header: "Laji",
-        filterVariant: "autocomplete",
+        filterVariant: "multi-select",
       },
       {
         accessorKey: "type",
         header: "Luonne",
-        filterVariant: "autocomplete",
+        filterVariant: "multi-select",
       },
       {
         accessorKey: "startDate",

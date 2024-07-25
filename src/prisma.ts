@@ -38,6 +38,11 @@ prisma.$on("query", (e) => {
 
 export async function getCourses() {
   const courses = await prisma.course.findMany({
+    where: {
+      startDate: {
+        gte: new Date(),
+      },
+    },
     orderBy: {
       startDate: "asc",
     },
