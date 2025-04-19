@@ -53,7 +53,7 @@ export default function Table({ courses }: { courses: Course[] }) {
           return (
             <a
               target="_blank"
-              href={`https://asiointi.kela.fi/kz_app/KZInternetApplication/YleiskyselyHakuUseCase?valittu=${row.original.id}&lang=fi`}
+              href={`https://kuntoutus.kela.fi/kurssihaku/KZInternetApplication/YleiskyselyHakuUseCase?valittu=${row.original.id}&lang=fi`}
             >
               {row.original.name}
             </a>

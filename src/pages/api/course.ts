@@ -9,8 +9,8 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "GET": {
-      const therapists = await getCourses();
-      return res.json(therapists);
+      const courses = await getCourses();
+      return res.json(courses);
     }
     case "POST": {
       if (req.query.postSecret !== global.process.env.POST_SECRET) {
