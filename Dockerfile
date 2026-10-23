@@ -1,4 +1,4 @@
-FROM node:24-slim AS base
+FROM node:26-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -29,10 +29,7 @@ ENV BACKEND_URL=https://kurssit.terapeuttihaku.fi/api
 
 RUN apt update -y && apt install -y openssl
 RUN npx prisma generate
-RUN yarn build
-
-# If using npm comment out above and use below instead
-# RUN npm run build
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
